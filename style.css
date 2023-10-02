@@ -1,0 +1,279 @@
+/*
+Theme Name: Nathalie_Mota
+Text Domain: Motaphoto
+Version: 1.0
+Description: Top bar theme
+Tags: upper-bar, responsive
+Author: Elie Akiki
+Author URI: https://www.youtube.com/watch?v=MuTg9PY-0Do
+*/
+
+:root {
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  /* Font Sizes */
+  --font-normal: 1em;
+  --font-small: 0.8125rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.15;
+}
+
+a {
+  color: #222042 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--gray-dark);
+  font-weight: bold;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 0.375rem 1rem;
+  height: 2.75rem;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn:focus,
+.btn.focus {
+  box-shadow: none !important;
+}
+
+.btn-primary {
+  color: #fff;
+}
+
+.form-control {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  height: 2.75rem;
+  border-color: var(--light);
+}
+
+.theme-bg-light {
+  background: var(--light) !important;
+}
+
+.header .site-title {
+  color: var(--white);
+  font-size: 1.5em;
+  display: block;
+}
+
+.header .btn-primary {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: transparent;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+}
+
+.header .btn-primary:hover {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: transparent;
+}
+
+.header .navbar-dark .navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.6rem;
+}
+
+.header .navbar-dark .navbar-toggler:hover {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+
+.header .nav-item {
+  font-weight: bold;
+}
+
+.header .nav-item.active a {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.header .nav-item.active a:hover {
+  text-decoration: none;
+}
+
+.header .nav-item a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.header .nav-item a:hover {
+  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.logo {
+  width: 220px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-list a {
+    transition: none;
+  }
+  .btn {
+    transition: none;
+  }
+}
+
+.main-wrapper {
+  margin-left: var(--sidebar-width);
+  background: #fff;
+}
+
+.main-wrapper .container {
+  max-width: var(--content-max-width);
+}
+
+.page-title {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  transition: all 0.2s;
+}
+
+.sticky {
+  padding: 1em 0 !important;
+}
+
+.footer {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer a {
+  color: #fff;
+}
+
+.gradient {
+  background: rgb(43, 43, 43);
+  background: linear-gradient(
+    151deg,
+    var(--seal) 10%,
+    var(--green) 35%,
+    var(--seal) 80%
+  ) !important;
+}
+
+@media (max-width: 991.98px) {
+  .header .site-title {
+    display: block;
+  }
+  .header .btn-primary {
+    width: 100%;
+  }
+  .header .navbar {
+    padding: 1rem;
+  }
+  .main-wrapper {
+    margin-left: 0;
+  }
+}
+
+.u-column1.col-1 {
+  max-width: 100%;
+}
+
+.u-column2.col-2 {
+  max-width: 100%;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gm-style-mtc {
+  display: none;
+}
+
+.header .nav-item {
+  margin-right: 1rem; /* Adjust the spacing between menu items */
+}
+
+#navigation ul {
+  list-style: none;
+  padding: 0;
+  display: flex; /* Use flexbox to arrange items horizontally */
+}
+
+.navbar-collapse {
+  flex-basis: 75% !important;
+
+  flex-grow: 0 !important;
+}
+
+.woocommerce ul.products li.product .button {
+  margin-top: 1em;
+  display: none;
+}
+
+.footer-menu {
+  text-align: center;
+}
+
+.footer-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-menu ul li {
+  display: inline-block;
+  margin-right: 20px; /* Adjust the spacing between menu items */
+}
+
+.footer-menu ul li:last-child {
+  margin-right: 0; /* Remove margin from the last item to avoid extra space */
+}
+
+.footer-menu ul li a {
+  color: #fff; /* Set the text color for menu items */
+  text-decoration: none;
+  font-weight: bold; /* Optionally, make the text bold */
+}
+
+.footer-menu ul li a:hover {
+  text-decoration: underline; /* Add underline on hover (optional) */
+}
+
+/* Style for the rights reserved item */
+.footer-menu .rights-reserved {
+  color: black; /* Change the color as needed */
+  font-weight: bold;
+  /* Add any other styling you want for this item */
+}
+
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+}
+
+.navbar-toggler-icon {
+  background-color: #333; /* Customize the color */
+}
+
+/* Style the mobile menu */
+#navigation.show {
+  display: block; /* Show the mobile menu */
+}
