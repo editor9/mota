@@ -8,20 +8,10 @@
             <li class="rights-reserved">TOUS DROITS RESERVES</li>
         </ul>
     </nav>
-    <?php
-   
-    ?>
-
+    
 </footer>
-
-</div>
-
-<?php
-wp_footer();
-
-
-?>
-
+<!-- Add the modal trigger link here --> 
+<a href="#" class="modal-trigger">Contact Us</a>
 </body>
 
 </html>

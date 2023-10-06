@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mota">
-    <meta name="author" content="http://localhost:81/atipik/">
+    <meta name="author" content="http://localhost:81/mota/">
     <link rel="shortcut icon" href="/wp-content/themes/mota/assets/images/logo.png">
 
 
@@ -46,7 +46,8 @@
                 ?>
             </div>
         </nav>
+     
     </header>
 
 
-    <div class="main-wrapper">
+  

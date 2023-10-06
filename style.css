@@ -277,3 +277,34 @@ ul {
 #navigation.show {
   display: block; /* Show the mobile menu */
 }
+
+/* Style the modal content 
+.modal-content {
+  background-color: white;
+  padding: 20px;
+} */
+
+
+.contact-modal {
+  display: none;
+} 
+
+.contact-modal .display-active {
+  display: block;
+}
+
+/* Style the close button */
+.close-button {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Your styles for the close button go here 
+.contact-modal .modal-close {
+  
+  color: red;
+  font-size: 16px;
+}*/
