@@ -10,8 +10,7 @@
     </nav>
     
 </footer>
-<!-- Add the modal trigger link here --> 
-<a href="#" class="modal-trigger">Contact Us</a>
+
 </body>
 
 </html>

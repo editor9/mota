@@ -1,6 +1,12 @@
-<!-- /wp-content/themes/your-theme/template-parts/contact-modal.php -->
-<div class="contact-modal">
-    <!-- Contact Form 7 shortcode goes here -->
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">x</span>
     <?php echo do_shortcode('[contact-form-7 id="c8790eb" title="mota-contact"]'); ?>
-    <button class="close-button">Close</button>
+  </div>
+
 </div>

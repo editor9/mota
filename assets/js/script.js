@@ -1,10 +1,4 @@
-/* $(window).scroll(function () {
-  if ($(this).scrollTop() > 1) {
-    $(".page-title").addClass("sticky");
-  } else {
-    $(".page-title").removeClass("sticky");
-  }
-}); */
+
 jQuery.noConflict();
 
 jQuery(document).ready(function($) {
@@ -12,39 +6,39 @@ jQuery(document).ready(function($) {
     $("#navigation").toggleClass("show");
   });
 
-  // Handle the click event for the "Contact Us" button
-  $(".modal-trigger").click(function(e) {
-    e.preventDefault();
-    console.log('Modal trigger clicked');
-    if (!$(".contact-modal").is(":visible")) { // Check if the modal is not already visible
-      $(".contact-modal").fadeIn();
-    }
-  });
+  $(document).ready(function() {
+var modal = document.getElementById('myModal');
 
-  // Handle the click event for the "Close" button
-  $(".close-button").click(function() {
-    console.log('Close button clicked');
-    $(".contact-modal").fadeOut();
-  });
+// Get the button that opens the modal
+var btn = document.getElementsByClassName("open-modal")[0]; //getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+console.log("before btn check");
+// When the user clicks on the button, open the modal
+if (btn != null) {
+  console.log("in btn check");
+  btn.onclick = function() {
+    modal.style.display = "block";
+}
+} 
+
+
+// When the user clicks on <span> (x), close the modal
+if (span != null) {
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+
 });
-
-  
-
-
-/*
-jQuery(document).ready(function($) {
-  // Open the modal when a trigger element with class "modal-trigger" is clicked
-  $('.modal-trigger').click(function(e) {
-    e.preventDefault(); // Prevent the default link behavior
-    //console.log('Modal trigger clicked'); // Add this line for debugging
-    $('.contact-modal').addClass('active');
-  });
-
-  // Close the modal when the close button with class "close-button" is clicked
-  $('.close-button').click(function() {
-    //console.log('Close button clicked'); // Add this line for debugging
-    $('.contact-modal').removeClass('active');
-  });
 });
-*/
-
