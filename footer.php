@@ -2,11 +2,16 @@
 
 
     <nav class="footer-menu">
-        <ul class="menu">
-            <li><a href="http://localhost:81/mota/vie-privee/">VIE PRIVEE</a></li>
-            <li><a href="http://localhost:81/mota/mentions-legales/">MENTIONS LEGALES</a></li>
-            <li class="rights-reserved">TOUS DROITS RESERVES</li>
-        </ul>
+    <?php
+                wp_nav_menu(
+                    array(
+                        'menu' => 'footer',
+                        'container' => '',
+                        'theme_location' => 'footer',
+                        'item_wrap' => '<ul class="menu">%3$s</ul>'
+                    )
+                );
+                ?>
     </nav>
     
 </footer>
