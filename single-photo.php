@@ -99,14 +99,18 @@ get_header();
 					
 
 						<div class="col post-nav">
-							<a href="<?php echo get_permalink(get_adjacent_post(false, '', true)); ?>">
-								<img src="<?php echo get_the_post_thumbnail_url(get_adjacent_post(false, '', true)); ?>"
-									alt="Previous Photo">
+							<?php
+						$prev_post=get_adjacent_post(false, '', true);
+						$next_post=get_adjacent_post(false, '', false);
+						?>
+						<img src="<?php echo get_field('fichier_photo',$next_post); ?>"
+									alt="Next Photo" width="50">
+							<a href="<?php echo get_permalink($prev_post); ?>">
+								
 								<span class="arrow-left">←</span>
 							</a>
-							<a href="<?php echo get_permalink(get_adjacent_post(false, '', false)); ?>">
-								<img src="<?php echo get_the_post_thumbnail_url(get_adjacent_post(false, '', false)); ?>"
-									alt="Next Photo">
+							<a href="<?php echo get_permalink($next_post); ?>">
+								
 								<span class="arrow-right">→</span>
 							</a>
 						</div>
@@ -123,15 +127,20 @@ get_header();
 					<?php
 					// Display the next 2 photos in the same category
 					// Custom query
-			
+			//recupéré la categorie
+			//var_dump(get_the_terms(get_the_ID(),'categories'));
+					$categories=get_the_terms(get_the_ID(),'categories');
+					$main_cat=$categories[0]-> term_id;
+					var_dump($main_cat);
+
 					$args = array(
 						'post_type' => 'photo',
 						'tax_query' => array(
 							array(
-								'taxonomy' => ($main_cat ? $main_cat->taxonomy : ''),
+								'taxonomy' => 'categories',
 								// Use the main category's taxonomy
 								'field' => 'term_id',
-								'terms' => ($main_cat ? $main_cat->term_id : ''),
+								'terms' => $main_cat,
 								// Use the main category's term ID
 							),
 						),
@@ -147,7 +156,15 @@ get_header();
 						<!-- The loop displays 2 items if they exist -->
 						<?php while ($the_query->have_posts()):
 							$the_query->the_post(); ?>
-							<?php get_template_part('template-parts/photo-img'); ?>
+							<?php
+							the_title();
+
+							//get_template_part('template-parts/photo-img'); ?>
+						<a href="" class="same_photos" >
+							<img src="" alt="<?php the_title() ?>" />
+
+						</a>
+
 						<?php endwhile; ?>
 						<!-- End of the loop -->
 
@@ -165,6 +182,6 @@ get_header();
 </article>
 
 <?php
-get_template_part('template-parts/contact-modal');
+
 get_footer();
 ?>

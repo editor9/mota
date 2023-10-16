@@ -113,7 +113,7 @@ function filter_sort_photos()
     $args = array(
         'post_type' => 'photo',
         // Replace with your CPT slug.
-        'posts_per_page' => $posts_per_page
+        'posts_per_page' => -1
         // 'offset' => $offset,
     );
 

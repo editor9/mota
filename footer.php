@@ -1,3 +1,7 @@
+<?php
+ get_template_part('template-parts/contact-modal'); 
+ ?>
+
 <footer class="footer text-center py-2 theme-bg-dark">
 
 
@@ -13,7 +17,7 @@
                 );
                 ?>
     </nav>
-    
+  
 </footer>
 
 </body>

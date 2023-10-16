@@ -320,6 +320,9 @@ ul {
 }
 
 /* Modal Content/Box */
+#myModal{
+  display: none;
+}
 .modal-content {
   /*background-color: #fefefe;*/
   padding-left: 75px;
