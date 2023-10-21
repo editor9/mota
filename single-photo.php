@@ -93,29 +93,25 @@ get_header();
 						</div>
 					</div>
 
-
-
-
-					
-
-						<div class="col post-nav">
-							<?php
-						$prev_post=get_adjacent_post(false, '', true);
-						$next_post=get_adjacent_post(false, '', false);
+					<div class="col post-nav">
+						<?php
+						$prev_post = get_adjacent_post(false, '', true);
+						$next_post = get_adjacent_post(false, '', false);
 						?>
-						<img src="<?php echo get_field('fichier_photo',$next_post); ?>"
-									alt="Next Photo" width="50">
+						<div class="image-container">
+							<img src="<?php echo get_field('fichier_photo', $next_post); ?>" alt="Next Photo" width="87"
+								height="71">
+						</div>
+						<div class="arrows">
 							<a href="<?php echo get_permalink($prev_post); ?>">
-								
 								<span class="arrow-left">←</span>
 							</a>
 							<a href="<?php echo get_permalink($next_post); ?>">
-								
 								<span class="arrow-right">→</span>
 							</a>
 						</div>
+					</div>
 
-					
 					<?php
 					// Display thumbnail of the next post "photo"
 			
@@ -127,10 +123,10 @@ get_header();
 					<?php
 					// Display the next 2 photos in the same category
 					// Custom query
-			//recupéré la categorie
-			//var_dump(get_the_terms(get_the_ID(),'categories'));
-					$categories=get_the_terms(get_the_ID(),'categories');
-					$main_cat=$categories[0]-> term_id;
+					//recupéré la categorie
+					//var_dump(get_the_terms(get_the_ID(),'categories'));
+					$categories = get_the_terms(get_the_ID(), 'categories');
+					$main_cat = $categories[0]->term_id;
 					var_dump($main_cat);
 
 					$args = array(
@@ -160,10 +156,10 @@ get_header();
 							the_title();
 
 							//get_template_part('template-parts/photo-img'); ?>
-						<a href="" class="same_photos" >
-							<img src="" alt="<?php the_title() ?>" />
+							<a href="" class="same_photos">
+								<img src="" alt="<?php the_title() ?>" />
 
-						</a>
+							</a>
 
 						<?php endwhile; ?>
 						<!-- End of the loop -->
@@ -182,6 +178,5 @@ get_header();
 </article>
 
 <?php
-
 get_footer();
 ?>

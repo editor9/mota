@@ -275,7 +275,7 @@ ul {
 }
 
 .navbar-toggler-icon {
-  background-color: #333; /* Customize the color */
+  background-color: white; /* Customize the color */
 }
 
 /* Style the mobile menu */
@@ -297,23 +297,6 @@ ul {
   align-items: center;
 }
 
-
-/* The Close Button */
-.close {
-  position: absolute;
-  right: 10px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-}
-
-
 /* Set the height of the message textarea to 120px */
 .wpcf7-form-control-wrap textarea[name="your-message"] {
   height: 40px !important;
@@ -323,6 +306,11 @@ ul {
 #myModal{
   display: none;
 }
+.modal {
+  z-index: 1000; /* You can adjust this value based on your needs */
+  /* ... other styles ... */
+}
+
 .modal-content {
   /*background-color: #fefefe;*/
   padding-left: 75px;
@@ -339,14 +327,12 @@ button, input, optgroup, select, textarea {
   border-radius: 5px;
 }
 
-
 .post-photo img {
   max-width: 100%;
 }
 .col.post-photo{
   padding-bottom: 10px;
 }
-
 
 /* Add a black horizontal line just after the "Formats" section */
 .main-content .metas:last-child {
@@ -409,9 +395,6 @@ h2 {
   padding-left: 90px;;
 }
 
-
-
-
 .row.post-nav {
   display: flex;
   justify-content: space-between;
@@ -453,6 +436,16 @@ h2 {
   text-align: right;
 }
 
+.arrow-left {
+  font-size: 24px;
+  margin-right: 20px; /* Adjust the right margin as needed */
+}
+
+.arrow-right {
+  font-size: 24px;
+  margin-left: 20px; /* Adjust the left margin as needed */
+}
+
 .content {
   column-count: 2; /* Set the number of columns to 2 */
   column-gap: 20px; /* Adjust the gap between columns as needed */
@@ -464,6 +457,78 @@ h2 {
 
 label[for='categories'], label[for='formats'], label[for='sort'] {
   cursor: pointer;
+}
+
+.photo-card {
+  position: relative;
+}
+
+.photo-card i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #fff;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.photo-card:hover i {
+  opacity: 1;
+}
+
+/* Styles for the Lightbox Container */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Black background with 80% opacity */
+  z-index: 999; /* Ensure it's above other content */
+  overflow: auto;
+}
+
+/* Styles for the Lightbox Content */
+.lightbox-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Style the Close Button */
+.close-lightbox {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Styles for Lightbox Arrows */
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.lightbox-arrow-prev {
+  left: 10px;
+}
+
+.lightbox-arrow-next {
+  right: 10px;
 }
 
 
