@@ -29,7 +29,10 @@ jQuery(document).ready(function($) {
     var imageUrls = [];
     // The index of the currently displayed image
     var currentImageIndex = 0;
-  
+   // Populate the 'imageUrls' array with image URLs from '.photo-card' elements
+   $('.photo-card').each(function() {
+    imageUrls.push($(this).data('image-url'));
+  });
     // Function to load the previous image
     function loadPreviousImage() {
       if (currentImageIndex > 0) {

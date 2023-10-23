@@ -171,15 +171,7 @@ h6 {
   color: #fff;
 }
 
-.gradient {
-  background: rgb(43, 43, 43);
-  background: linear-gradient(
-    151deg,
-    var(--seal) 10%,
-    var(--green) 35%,
-    var(--seal) 80%
-  ) !important;
-}
+
 
 @media (max-width: 991.98px) {
   .header .site-title {
@@ -205,8 +197,8 @@ h6 {
 }
 ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  /* padding: 0;
+  margin: 0;*/
 }
 
 .gm-style-mtc {
@@ -214,25 +206,27 @@ ul {
 }
 
 .header .nav-item {
-  margin-right: 1rem; /* Adjust the spacing between menu items */
+  margin-right: 2rem; /* Adjust the spacing between menu items */
 }
 
 #navigation ul {
   list-style: none;
-  padding: 0;
+  padding-left: 215px;
   display: flex; /* Use flexbox to arrange items horizontally */
 }
 
 .navbar-collapse {
-  flex-basis: 75% !important;
-
+  flex-basis: 100% !important;
   flex-grow: 0 !important;
 }
 
-.woocommerce ul.products li.product .button {
-  margin-top: 1em;
-  display: none;
+dl,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: -0.5rem;
 }
+
 
 .footer-menu {
   text-align: center;
@@ -303,12 +297,11 @@ ul {
 }
 
 /* Modal Content/Box */
-#myModal{
+#myModal {
   display: none;
 }
 .modal {
   z-index: 1000; /* You can adjust this value based on your needs */
-  /* ... other styles ... */
 }
 
 .modal-content {
@@ -322,15 +315,18 @@ ul {
   margin: 20px 0 40px -75px;
 }
 
-button, input, optgroup, select, textarea {
-
+button,
+input,
+optgroup,
+select,
+textarea {
   border-radius: 5px;
 }
 
 .post-photo img {
   max-width: 100%;
 }
-.col.post-photo{
+.col.post-photo {
   padding-bottom: 10px;
 }
 
@@ -346,7 +342,7 @@ button, input, optgroup, select, textarea {
 }
 hr {
   width: 98%;
-  color:black;
+  color: black;
   border-bottom: 1px solid #000;
   margin: 20px auto;
   text-align: center;
@@ -356,14 +352,15 @@ hr {
   background-color: white !important;
 }
 
-.contact-layout, .contact-text {
+.contact-layout,
+.contact-text {
   /* Shared styles */
   width: 272px;
   height: 50px;
   border-radius: 2px;
   display: flex;
   align-items: center;
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
   color: black;
   margin-top: 10px;
 }
@@ -371,7 +368,7 @@ hr {
 .contact-text {
   display: flex; /* Use flexbox to align items horizontally */
   align-items: center; /* Vertically center the items */
-  justify-content: center;  /* Horizontally center the text */
+  justify-content: center; /* Horizontally center the text */
   margin-left: auto;
 }
 
@@ -381,7 +378,7 @@ hr {
 }
 
 .contact-layout:hover {
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
   transition: background-color 0.3s;
 }
 
@@ -392,7 +389,7 @@ h2 {
   text-align: left; /* Align content to the left (logo will be on the left) */
 }
 .custom-logo-link {
-  padding-left: 90px;;
+  padding-left: 90px;
 }
 
 .row.post-nav {
@@ -432,7 +429,7 @@ h2 {
   margin-left: 10px;
 }
 
-.col.post-nav{
+.col.post-nav {
   text-align: right;
 }
 
@@ -455,7 +452,9 @@ h2 {
   height: auto;
 }
 
-label[for='categories'], label[for='formats'], label[for='sort'] {
+label[for="categories"],
+label[for="formats"],
+label[for="sort"] {
   cursor: pointer;
 }
 
@@ -530,7 +529,6 @@ label[for='categories'], label[for='formats'], label[for='sort'] {
 .lightbox-arrow-next {
   right: 10px;
 }
-
 
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
