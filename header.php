@@ -20,17 +20,17 @@
 <body>
 
     <header class="header text-center row">
-    
+
         <div class="col">
             <?php
-                if (function_exists('the_custom_logo')) {
-                    the_custom_logo();
-                }
+            if (function_exists('the_custom_logo')) {
+                the_custom_logo();
+            }
             ?>
         </div>
-                
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light col">
-        
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                 aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,8 +49,5 @@
                 ?>
             </div>
         </nav>
-     
+
     </header>
-
-
-  
