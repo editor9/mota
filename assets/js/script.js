@@ -112,53 +112,55 @@ jQuery(document).ready(function ($) {
   });
 
 
-// Function to append new photos to the gallery
-function appendNewPhotos(response) {
-  if (response.trim() === '') {
-      console.log("no more photos");
-      // No more photos to load, so hide the "Charger plus" button.
-      $('#load-more').hide();
-      console.log("button hidden");
-  } else {
-      console.log("still have more photos");
-      $('.photo-gallery').append(response); // Append the new photos to the gallery.
-      page++; // Increment the page number.
-      console.log("photos appended");
-  }
+  function appendNewPhotos(response) {
+    if (response.success && response.data && response.data.content) {
+        $('.photo-gallery').append(response.data.content);
+    } else {
+        console.error('Response structure is not as expected:', response);
+    }
 }
-  // "Charger plus" button functionality
-  var page = 2; // Start with the second page (since the first page is already loaded).
-  $('#load-more').click(function() {
-      $.ajax({
-          url: ajax_object.ajaxurl, // Use WordPress AJAX URL
-          type: 'POST',
-          data: {
-              action: 'load_more_photos',
-              page: page,
-          },
-          success: function(response) {
-              if (response.trim() === '') {
-                  console.log("no more photos");
-                  // No more photos to load, so hide the "Charger plus" button.
-                  $('#load-more').hide();
-                  console.log("button hidden");
-              } else {
-                  console.log("still have more photos");
-                // Call the appendNewPhotos function to append the new photos to the gallery.
-                appendNewPhotos(response);
-                  page++; // Increment the page number.
-                  console.log("photos appended");
-              }
-          },
-      });
-  });
 
 
 
-  
+ // "Charger plus" button functionality
+ var page = 2; // Start with the second page (since the first page is already loaded).
+ var loading = false; // Add a loading flag
+ $('#load-more').click(function() {
+ if (loading) {
+         return; // If already loading, ignore the click
+     }
+     loading = true; // Set loading flag
+     $.ajax({
+         url: ajax_object.ajaxurl, // Use WordPress AJAX URL
+         type: 'POST',
+         data: {
+             action: 'load_more_photos',
+             page: page,
+         },
+         success: function(response) {
+             if (typeof response === 'string' && response.trim() === '') {
+                 console.log("no more photos");
+                 // No more photos to load, so hide the "Charger plus" button.
+                 $('#load-more').hide();
+                 console.log("button hidden");
+             } else {
+                 console.log("still have more photos");
+                 // Call the appendNewPhotos function to append the new photos to the gallery.
+                 appendNewPhotos(response);
+                 page++; // Increment the page number.
+                 console.log("photos appended");
+             }
+         },
+     });
+ });
+
+
+
      $('.filter-label').click(function() {
      $(this).siblings('.filter-dropdown').toggle();
 });
+
+
   // Function to update photos based on     selected     terms
   function updatePhotos() {
     var selectedCategories = $("#category-select").val();
@@ -185,21 +187,16 @@ function appendNewPhotos(response) {
       },
       success: function (response) {
         // Assuming "response" contains the JSON response you provided
-        var content = response.content;
-
-        // Update the photo gallery with the new content
-        $(".photo-gallery").html(content);
-
-        // Check if the response is empty or invalid JSON
         if (response.content) {
-          console.log("Content received:", response.content);
-          // Replace the photo gallery with the updated content
-          $(".photo-gallery").html(content);
+            console.log("Content received:", response.content);
+            // Replace the photo gallery with the updated content
+            $(".photo-gallery").html(response.content);
         } else {
-          // Handle the case when there's no content
-          console.log("No content to display.");
+            // Handle the case when there's no content
+            console.log("No content to display.");
         }
-      },
+    },
+    
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("AJAX Request Error:", textStatus, errorThrown);
       },
@@ -210,6 +207,9 @@ function appendNewPhotos(response) {
   $("#filter-form select").on("change", function () {
     updatePhotos(); // Call the updatePhotos function when the filters change
   });
+
+
+
 
 
 
@@ -258,28 +258,5 @@ function appendNewPhotos(response) {
       console.log('jQuery is loaded.');
   }
 
-
-  
-  // Add this line for debugging
-console.log('Button clicked inside content-page.php');
-     // Handle click on "Show All Photos" button
-          $('.show-all-photos').on('click', function(e) {
-          e.preventDefault();
-  
-          // Use the AJAX request to load and display the photos
-          $.ajax({
-              url: ajax_object.ajaxurl,
-              type: 'post',
-              data: {
-                  action: 'load_all_photos', // This should match the action in your functions.php file
-              },
-              success: function(response) {
-                $('.photo-gallery').append(response); // Append the new photos to the gallery. // Append the response to the photo gallery
-              },
-              error: function(error) {
-                  console.log(error);
-              }
-          });
-      });
-  });
+});
   

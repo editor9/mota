@@ -22,38 +22,29 @@ function mota_menu()
 }
 add_action('init', 'mota_menu');
 
-function mota_style()
-{
+function mota_enqueue_styles_and_scripts() {
     $version = wp_get_theme()->get('Version');
+
+    // Enqueue styles
     wp_enqueue_style('mota-bootstrap', "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", array(), '4.4.1', 'all');
     wp_enqueue_style('mota-fontawesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css", array(), '5.13.0', 'all');
     wp_enqueue_style('mota-style', get_template_directory_uri() . "/style.css", array('mota-fontawesome'), $version, 'all');
+
+    // Register and enqueue scripts
+    wp_register_script('mota-jquery', includes_url('/js/jquery/jquery.js'), false, null, true);
+    wp_enqueue_script('mota-jquery');
+    wp_enqueue_script('mota_bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('mota-jquery'), '4.4.1', true);
+    wp_enqueue_script('mota_popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', array('mota-jquery'), '1.16.0', true);
+    wp_enqueue_script('mota_script', get_template_directory_uri() . '/assets/js/script.js', array('mota-jquery'), '1.0', false);
+
+    // Localize the script
+    wp_localize_script('mota_script', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('mota_filter')));
 }
-add_action('wp_enqueue_scripts', 'mota_style');
 
-function enqueue_jquery()
-{
-    wp_register_script('jquery', includes_url('/js/jquery/jquery.js'), false, null, true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_jquery');
-
-function mota_scripts()
-{
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('mota_bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery'), '4.4.1', true);
-    wp_enqueue_script('mota_popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', array('jquery'), '1.16.0', true);
-    wp_enqueue_script('mota_script', get_template_directory_uri() . '/assets/js/script.js', array('jquery'), '1.0', false);
-    wp_localize_script('mota_script', 'ajax_object', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('mota_filter'),
-    )
-    );
-}
-add_action('wp_enqueue_scripts', 'mota_scripts');
+add_action('wp_enqueue_scripts', 'mota_enqueue_styles_and_scripts');
 
 
-
-function load_more_photos() // Define the function for handling the AJAX action
+function load_more_photos()
 {
     // Get the page number from the AJAX request
     $page = intval($_POST['page']);
@@ -61,40 +52,72 @@ function load_more_photos() // Define the function for handling the AJAX action
     $offset = ($page - 1) * $posts_per_page; // Calculate the offset to query the correct posts
 
     $args = array(
-        // Query for more photos
         'post_type' => 'photo',
-        // Replace with your CPT slug.
         'posts_per_page' => $posts_per_page,
         'offset' => $offset,
     );
 
     $query = new WP_Query($args);
+    ob_start(); // Start output buffering
+
     if ($query->have_posts()) {
         while ($query->have_posts()) {
-            $query->the_post(); // Output the HTML for each photo
-            ?>
-            <div class="col post-photo">
-                <img src="<?php the_field('fichier_photo'); ?>" />
-            </div>
-            <?php
+            $query->the_post();
+            get_template_part('template-parts/content', 'photo'); // Output the template part
         }
     }
+
+    $content = ob_get_clean(); // Get the buffered HTML content
     wp_reset_postdata();
 
+    wp_send_json_success(array('content' => $content));
     die(); // Always die at the end to return a proper response
 }
 
-// Hook the above function into WordPress
 add_action('wp_ajax_load_more_photos', 'load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
 
 
 
-function generate_photo_cards($query, $selectedCategory, $selectedFormat)
+function filter_photos()
 {
+    if (!isset($_REQUEST['nonce']) || !wp_verify_nonce($_REQUEST['nonce'], 'mota_filter')) {
+        wp_send_json_error("Vous n’avez pas l’autorisation d’effectuer cette action.", 403);
+    }
+    
+    // Debugging: Output the selected category and other filter parameters
+    error_log('Selected Category: ' . $_POST['category']);
+    error_log('Other Filter Parameters: ' . json_encode($_POST));
+
+    $selectedCategory = isset($_POST['category']) ? $_POST['category'] : ''; // Selected category
+    $selectedFormat = isset($_POST['format']) ? $_POST['format'] : ''; // Selected format
+    $selectedSort = isset($_POST['sort']) ? $_POST['sort'] : ''; // Selected sort order
+
+    error_log('Selected Category: ' . $selectedCategory);
+    error_log('Selected Format: ' . $selectedFormat);
+
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1, // -1 means all number of posts per page
+        'order' => 'DESC'
+    );
+
+    if ($selectedSort === 'asc') {
+        // Sort by oldest first
+        $args['order'] = 'ASC';
+    }
+
+    // Perform the query
+    $query = new WP_Query($args);
+
+    // Debugging: Output the generated SQL query
+    error_log('Generated SQL Query: ' . $query->request);
+
     ob_start(); // Start output buffering
+
     if ($query->have_posts()) {
         $count = 0;
+
         while ($query->have_posts() && $count < 13) {
             $query->the_post();
             $current_post_category = get_category_names(); // Get the category of the current post
@@ -127,55 +150,14 @@ function generate_photo_cards($query, $selectedCategory, $selectedFormat)
             }
         }
     }
+
     wp_reset_postdata();
     $content = ob_get_clean(); // Get the buffered HTML content
     wp_send_json(array('content' => $content));
 }
 
-
-function filter_photos()
-{
-    if (!isset($_REQUEST['nonce']) || !wp_verify_nonce($_REQUEST['nonce'], 'mota_filter')) {
-        wp_send_json_error("Vous n’avez pas l’autorisation d’effectuer cette action.", 403);
-    }
-    // Debugging: Output the selected category and other filter parameters
-    error_log('Selected Category: ' . $_POST['category']);
-    error_log('Other Filter Parameters: ' . json_encode($_POST));
-
-
-    $selectedCategory = isset($_POST['category']) ? $_POST['category'] : ''; // Selected category
-    $selectedFormat = isset($_POST['format']) ? $_POST['format'] : ''; // Selected format
-    $selectedSort = isset($_POST['sort']) ? $_POST['sort'] : ''; // Selected sort order
-
-    error_log('Selected Category: ' . $selectedCategory);
-    error_log('Selected Format: ' . $selectedFormat);
-
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => -1,
-        //-1 means all number of posts per page 
-        'order' => 'DESC'
-    );
-
-    if ($selectedSort === 'asc') {
-        // Sort by oldest first
-        $args['order'] = 'ASC';
-    }
-
-    // Perform the query
-    $query = new WP_Query($args);
-
-    // Debugging: Output the generated SQL query
-    error_log('Generated SQL Query: ' . $query->request);
-
-    $photo_cards = generate_photo_cards($query, $selectedCategory, $selectedFormat);
-
-    wp_send_json_success(array('content' => $photo_cards));
-}
-
 add_action('wp_ajax_filter_photos', 'filter_photos');
 add_action('wp_ajax_nopriv_filter_photos', 'filter_photos');
-
 
 function get_category_names()
 {
@@ -203,32 +185,3 @@ function get_formats_names()
     return implode(', ', $format_names);
 }
 
-
-function load_all_photos() {
-    // Your WP_Query code to retrieve photo cards
-    // ...
-    $args = array(
-        // Query for more photos
-        'post_type' => 'photo',
-        'posts_per_page' => -1,
-        // Replace with your CPT slug.
-       
-    );
-
-    $query = new WP_Query($args);
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post(); // Output the HTML for each photo
-            ?>
-            <div class="col post-photo">
-                <img src="<?php the_field('fichier_photo'); ?>" />
-            </div>
-            <?php
-        }
-    }
-   
-    wp_reset_postdata();
-}
-
-add_action('wp_ajax_load_all_photos', 'load_all_photos');
-add_action('wp_ajax_nopriv_load_all_photos', 'load_all_photos');

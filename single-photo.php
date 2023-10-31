@@ -22,8 +22,8 @@ get_header();
 			// Content
 			?>
 
-			<div class="row">
-				<div class="col main-content">
+			<div class="row custom-align">
+				<div class="col main-content  ">
 					<h1>
 						<?php the_title(); ?>
 					</h1>
@@ -182,14 +182,8 @@ get_header();
 </footer>
 <!-- Show All Photos Button -->
 <div class="all-photos">
-    <a href="#" class="show-all-photos">Tous les photos</a>
+    <a href="<?php echo get_site_url( null, '/photos') ?>" >Tous les photos</a>
 </div>
-<!-- Container for all photos (initially hidden) -->
-<div class="all-photos-container" >
-    <!-- Content for displaying all photos goes here -->
-</div>
-
-
 
 			<?php
 		}

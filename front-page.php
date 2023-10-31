@@ -12,13 +12,14 @@ get_header();
     }
     ?>
 
-    <div class="container">
-            
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
             <form id="filter-form">
                 <div class="filter-group">
-                    <label for="category-select" class="filter-label">Catégories</label>
+                    
                     <select name="categories" id="category-select" class="filter-dropdown">
-                        <option value="">Toutes</option>
+                        <option value="">Catégories</option>
                         <option value="RECEPTION">Réception</option>
                         <option value="MARIAGE">Mariage</option>
                         <option value="CONCERT">Concert</option>
@@ -27,22 +28,30 @@ get_header();
                 </div>
 
                 <div class="filter-group">
-                    <label for="format-select" class="filter-label">Formats</label>
+                    
                     <select name="formats" id="format-select" class="filter-dropdown">
-                        <option value="">Tous</option>
+                        <option value="">Formats</option>
                         <option value="PAYSAGE">Paysage</option>
                         <option value="PORTRAIT">Portrait</option>
                     </select>
                 </div>
+            </form>
+        </div>
 
+        <div class="col-md-4 offset-md-4">
+            <form id="filter-form">
                 <div class="filter-group">
-                    <label for="sort-select" class="filter-label">Trier par</label>
+                    
                     <select name="sort" id="sort-select" class="filter-dropdown">
+                        <option value="desc">Trier par</option>
                         <option value="desc">Plus récentes</option>
                         <option value="asc">Plus anciennes</option>
                     </select>
                 </div>
             </form>
+        </div>
+    </div>
+
 
 
 
@@ -57,7 +66,7 @@ get_header();
         if ($query->have_posts()) {
             ?>
             <div class="row">
-                <article class="content px-3 py-5 p-md-5">
+                <article class="content">
                     <!-- Content for the left column -->
                     <div class="photo-gallery">
                         <?php
