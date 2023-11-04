@@ -2,7 +2,7 @@
 get_header();
 ?>
 
-<article class="px-3 py-5 p-md-5">
+<article>
     <?php
     if (have_posts()) {
         while (have_posts()) {
@@ -12,48 +12,42 @@ get_header();
     }
     ?>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
+    <div class="container  px-3 py-5 p-md-5">
+        <div class="row">
+            <div class="col">
+                <form id="filter-form">
+                    <div class="filter-group">
+
+                        <select name="categories" id="category-select" class="filter-dropdown">
+                            <option value="">CATÉGORIES</option>
+                            <option value="RECEPTION">Réception</option>
+                            <option value="MARIAGE">Mariage</option>
+                            <option value="CONCERT">Concert</option>
+                            <option value="TELEVISION">Télévision</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <select name="formats" id="format-select" class="filter-dropdown">
+                            <option value="">FORMATS</option>
+                            <option value="PAYSAGE">Paysage</option>
+                            <option value="PORTRAIT">Portrait</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
             <form id="filter-form">
                 <div class="filter-group">
-                    
-                    <select name="categories" id="category-select" class="filter-dropdown">
-                        <option value="">Catégories</option>
-                        <option value="RECEPTION">Réception</option>
-                        <option value="MARIAGE">Mariage</option>
-                        <option value="CONCERT">Concert</option>
-                        <option value="TELEVISION">Télévision</option>
-                    </select>
-                </div>
 
-                <div class="filter-group">
-                    
-                    <select name="formats" id="format-select" class="filter-dropdown">
-                        <option value="">Formats</option>
-                        <option value="PAYSAGE">Paysage</option>
-                        <option value="PORTRAIT">Portrait</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-4 offset-md-4">
-            <form id="filter-form">
-                <div class="filter-group">
-                    
                     <select name="sort" id="sort-select" class="filter-dropdown">
-                        <option value="desc">Trier par</option>
+                        <option value="desc">TRIER PAR</option>
                         <option value="desc">Plus récentes</option>
                         <option value="asc">Plus anciennes</option>
                     </select>
                 </div>
             </form>
         </div>
-    </div>
-
-
-
 
         <?php
         $args = array(
@@ -74,41 +68,36 @@ get_header();
                         while ($query->have_posts() && $count < 12) {
                             $query->the_post();
                             get_template_part('template-parts/content', 'photo'); // Include the content-photo template part
-                    
                             $count++;
                         }
                         ?>
                     </div>
-                    <?php
-                    if ($query->found_posts > 12) {
-                        ?>
-                        <div class="load-more-button">
-                            <button id="load-more">Charger plus</button>
-                        </div>
-                        <?php
-                    }
-                    ?>
                 </article>
-
+                <div class="col-md-4 text-center">
+                    <div class="load-more-button">
+                        <button id="load-more">Charger plus</button>
+                    </div>
+                </div>
             </div>
+
             <?php
         }
-        wp_reset_postdata();
-        ?>
+            wp_reset_postdata();
+            ?>
 
-        <div id="photo-lightbox" class="lightbox">
-            <span class="close-lightbox" id="close-lightbox">×</span>
-            <img class="lightbox-content" id="lightbox-content" src="" alt="Photo en plein écran">
+                <div id="photo-lightbox" class="lightbox">
+                    <span class="close-lightbox" id="close-lightbox">×</span>
+                    <img class="lightbox-content" id="lightbox-content" src="" alt="Photo en plein écran">
 
-            <span class="lightbox-arrow lightbox-arrow-prev" id="lightbox-arrow-prev">← Précédente</span>
-            <span class="lightbox-arrow lightbox-arrow-next" id="lightbox-arrow-next">Suivante →</span>
+                    <span class="lightbox-arrow lightbox-arrow-prev" id="lightbox-arrow-prev">← Précédente</span>
+                    <span class="lightbox-arrow lightbox-arrow-next" id="lightbox-arrow-next">Suivante →</span>
 
-            <!-- Place the #lightbox-info element here -->
-            <div id="lightbox-info">
-                <div id="lightbox-reference"></div>
-                <div id="lightbox-category"></div>
-            </div>
-        </div>
+                    <!-- Place the #lightbox-info element here -->
+                    <div id="lightbox-info">
+                        <div id="lightbox-reference"></div>
+                        <div id="lightbox-category"></div>
+                    </div>
+                </div>
     </div>
 </article>
 

@@ -99,7 +99,7 @@ function filter_photos()
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => -1, // -1 means all number of posts per page
-        'order' => 'DESC'
+        //'order' => 'DESC'
     );
 
     if ($selectedSort === 'asc') {

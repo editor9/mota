@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mota">
     <meta name="author" content="http://localhost:81/mota/">
-    <link rel="shortcut icon" href="/wp-content/themes/mota/assets/images/logo.png">
-
+    <link rel="icon" href="/mota/wp-content/plugins/wp-migrate-db/frontend/template/public/favicon.ico"
+        type="image/x-icon">
 
     <?php
     wp_head();
@@ -41,9 +41,10 @@
                 wp_nav_menu(
                     array(
                         'menu' => 'primary',
-                        'container' => '',
+                        'container' => 'ul',
+                        // Add the container element
                         'theme_location' => 'primary',
-                        'item_wrap' => '<ul id="" class="navbar-nav flex-column text-sm-center text-md-left">%3$s</ul>'
+                        'items_wrap' => '<ul id="%1$s" class="navbar-nav ml-auto">%3$s</ul>' // Modify the items_wrap to use ml-auto for right alignment
                     )
                 );
                 ?>

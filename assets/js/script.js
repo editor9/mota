@@ -1,6 +1,5 @@
 jQuery.noConflict();
 
-
 jQuery(document).ready(function ($) {
   // Hamburger menu toggle
   $(".navbar-toggler").click(function () {
@@ -26,8 +25,6 @@ jQuery(document).ready(function ($) {
       modal.style.display = "none";
     }
   };
-
-
 
   // Function to open the lightbox
   function openLightbox(photoCard) {
@@ -111,55 +108,49 @@ jQuery(document).ready(function ($) {
     $("#photo-lightbox").hide();
   });
 
-
   function appendNewPhotos(response) {
     if (response.success && response.data && response.data.content) {
-        $('.photo-gallery').append(response.data.content);
+      $(".photo-gallery").append(response.data.content);
     } else {
-        console.error('Response structure is not as expected:', response);
+      console.error("Response structure is not as expected:", response);
     }
-}
+  }
 
+  // "Charger plus" button functionality
+  var page = 2; // Start with the second page (since the first page is already loaded).
+  var loading = false; // Add a loading flag
+  $("#load-more").click(function () {
+    if (loading) {
+      return; // If already loading, ignore the click
+    }
+    loading = true; // Set loading flag
+    $.ajax({
+      url: ajax_object.ajaxurl, // Use WordPress AJAX URL
+      type: "POST",
+      data: {
+        action: "load_more_photos",
+        page: page,
+      },
+      success: function (response) {
+        if (typeof response === "string" && response.trim() === "") {
+          console.log("no more photos");
+          // No more photos to load, so hide the "Charger plus" button.
+          $("#load-more").hide();
+          console.log("button hidden");
+        } else {
+          console.log("still have more photos");
+          // Call the appendNewPhotos function to append the new photos to the gallery.
+          appendNewPhotos(response);
+          page++; // Increment the page number.
+          console.log("photos appended");
+        }
+      },
+    });
+  });
 
-
- // "Charger plus" button functionality
- var page = 2; // Start with the second page (since the first page is already loaded).
- var loading = false; // Add a loading flag
- $('#load-more').click(function() {
- if (loading) {
-         return; // If already loading, ignore the click
-     }
-     loading = true; // Set loading flag
-     $.ajax({
-         url: ajax_object.ajaxurl, // Use WordPress AJAX URL
-         type: 'POST',
-         data: {
-             action: 'load_more_photos',
-             page: page,
-         },
-         success: function(response) {
-             if (typeof response === 'string' && response.trim() === '') {
-                 console.log("no more photos");
-                 // No more photos to load, so hide the "Charger plus" button.
-                 $('#load-more').hide();
-                 console.log("button hidden");
-             } else {
-                 console.log("still have more photos");
-                 // Call the appendNewPhotos function to append the new photos to the gallery.
-                 appendNewPhotos(response);
-                 page++; // Increment the page number.
-                 console.log("photos appended");
-             }
-         },
-     });
- });
-
-
-
-     $('.filter-label').click(function() {
-     $(this).siblings('.filter-dropdown').toggle();
-});
-
+  $(".filter-label").click(function () {
+    $(this).siblings(".filter-dropdown").toggle();
+  });
 
   // Function to update photos based on     selected     terms
   function updatePhotos() {
@@ -188,15 +179,15 @@ jQuery(document).ready(function ($) {
       success: function (response) {
         // Assuming "response" contains the JSON response you provided
         if (response.content) {
-            console.log("Content received:", response.content);
-            // Replace the photo gallery with the updated content
-            $(".photo-gallery").html(response.content);
+          console.log("Content received:", response.content);
+          // Replace the photo gallery with the updated content
+          $(".photo-gallery").html(response.content);
         } else {
-            // Handle the case when there's no content
-            console.log("No content to display.");
+          // Handle the case when there's no content
+          console.log("No content to display.");
         }
-    },
-    
+      },
+
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("AJAX Request Error:", textStatus, errorThrown);
       },
@@ -207,12 +198,6 @@ jQuery(document).ready(function ($) {
   $("#filter-form select").on("change", function () {
     updatePhotos(); // Call the updatePhotos function when the filters change
   });
-
-
-
-
-
-
 
   // JavaScript code for opening the single-photo.php page
   $(".photo-gallery").on("click", ".photo-card i.fas.fa-eye", function () {
@@ -229,7 +214,7 @@ jQuery(document).ready(function ($) {
     var url = "http://localhost:81/mota/photo/" + photoname + "/";
 
     // Open the URL in a new tab or window
-    window.open(url);  //open(url, "_blank") to open in new window
+    window.location.replace(url); //open(url, "_blank") to open in new window
   });
 
   // Function to deduce photoname from the title
@@ -244,19 +229,17 @@ jQuery(document).ready(function ($) {
     titleModified = titleModified.replace(/-+$/, "");
     return titleModified;
   }
-    // Function to remove "é" accent from characters
-    function removeEAccent(input) {
-      return input
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/è|é|ê|ë/g, "e");
-    }
-
-    if (typeof jQuery == 'undefined') {
-      console.log('jQuery is not loaded.');
-  } else {
-      console.log('jQuery is loaded.');
+  // Function to remove "é" accent from characters
+  function removeEAccent(input) {
+    return input
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/è|é|ê|ë/g, "e");
   }
 
+  if (typeof jQuery == "undefined") {
+    console.log("jQuery is not loaded.");
+  } else {
+    console.log("jQuery is loaded.");
+  }
 });
-  
