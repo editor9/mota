@@ -129,7 +129,7 @@ get_header();
                                 // Use the main category's term ID
                             ),
                         ),
-                        'posts_per_page' => 2,
+                        'posts_per_page' => -1, // Remove the posts_per_page limit
                     );
 
                     $the_query = new WP_Query($args);
