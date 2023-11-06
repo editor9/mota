@@ -11,7 +11,9 @@
     <meta name="author" content="http://localhost:81/mota/">
     <link rel="icon" href="/mota/wp-content/plugins/wp-migrate-db/frontend/template/public/favicon.ico"
         type="image/x-icon">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <?php
     wp_head();
     ?>

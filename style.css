@@ -7,7 +7,11 @@ Tags: upper-bar, responsive
 Author: Elie Akiki
 Author URI: https://www.youtube.com/watch?v=MuTg9PY-0Do
 */
-
+body{
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+}
 a {
   color: black !important;
 }
@@ -16,13 +20,10 @@ a:hover {
 }
 
 p {
-  font-family: Space Mono;
+  font-family: 'Poppins',sans-serif;
   font-size: 14px;
-  font-weight: 400;
   line-height: 21px;
-  letter-spacing: 0.1em;
   text-align: left;
-  margin-right: 9%;
 }
 
 h3,
@@ -34,18 +35,14 @@ h6 {
 }
 
 h1{
-  font-family: Space Mono;
   font-size: 66px;
   font-style: italic;
-  font-weight: 400;
   line-height: 58px;
   letter-spacing: 0em;
 }
 
 h2{
-  font-family: Space Mono;
   font-size: 18px;
-  font-weight: 400;
   line-height: 27px;
   letter-spacing: 0.1em;
   margin-left: 1%;
@@ -65,9 +62,7 @@ ul {
   list-style: none;
   padding-left: 270px;
   display: flex; /* Use flexbox to arrange items horizontally */
-  font-family: Space Mono;
   font-size: 16px;
-  font-weight: 400;
   line-height: 61px;
   letter-spacing: 0em;
   text-align: left;
@@ -151,9 +146,6 @@ textarea
  border: 1.3px solid;
  height: 140px !important;
  width: 260px;                                                   
- font-family: Space Mono;
- font-size: 12px;
- font-weight: 400;
  line-height: 18px;
  letter-spacing: 0.03em;
 }
@@ -178,6 +170,7 @@ textarea
   display: flex; /* flexbox to align items horizontally */
   align-items: center; /* Vertically center the items */
   justify-content: center; /* Horizontally center the text */
+  margin-left: 17%;
 }
 
 .contact-layout a {
@@ -241,9 +234,7 @@ ul#menu-footer a:hover {
 }
 
 .footer-menu ul li a {
-  font-family: Space Mono;
   font-size: 16px;
-  font-weight: 400;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
@@ -259,9 +250,10 @@ ul#menu-footer a:hover {
   text-overflow: ellipsis; /* Show an ellipsis (...) for hidden text */
 }
 
-.post-photo img {
-  max-width: 100%;
+.col.main-content p, .col.main-content h1 {
+  text-transform: uppercase;
 }
+
 
 .col.post-photo {
   padding-bottom: 14px;
@@ -309,8 +301,13 @@ hr {
   height: auto;
 }
 
-.photo-card {
-  position: relative;
+.photo-card img {
+  width: 100%;
+  height: 495px;
+}
+
+.post-photo img {
+  width: 100%;
 }
 
 .photo-card i {
@@ -328,6 +325,64 @@ hr {
   opacity: 1;
 }
 
+/* Position the fullscreen icon at the top right corner of each photo-card */
+.photo-card {
+  position: relative;
+}
+
+.photo-card img.fullscreen-icon {
+  position: absolute;
+  top: 10px; /* top position  */
+  right: 10px; /* right position  */
+  cursor: pointer; /* cursor to indicate interactivity */
+  opacity: 0; /* Initially hide the icon */
+  transition: opacity 0.3s ease; /* smooth transition for opacity */
+  width: 34px; /* Adjust the width and height as needed */
+  height: 34px;
+}
+
+.photo-card:hover img.fullscreen-icon {
+  opacity: 1;
+}
+
+/* Styles for the overlay background on hover */
+.photo-card:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Styles for the reference and category text */
+.photo-card:hover::after {
+  content: attr(data-reference) " " attr(data-category);
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo-card:hover::before,
+.photo-card:hover::after {
+  content: attr(data-reference) ' ' attr(data-category);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Show the overlay and text on hover */
+.photo-card:hover::before, .photo-card:hover::after {
+  opacity: 1;
+}
+
+
 /* Styles for the Lightbox Container */
 .lightbox {
   display: none;
@@ -337,8 +392,9 @@ hr {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8); /* Black background with 80% opacity */
-  z-index: 999; /* Ensure it's above other content */
+  z-index: 999; /* above other content */
   overflow: auto;
+  color: white;
 }
 
 /* Styles for the Lightbox Content */
@@ -356,7 +412,6 @@ hr {
   position: absolute;
   top: 15px;
   right: 15px;
-  color: white;
   font-size: 24px;
   cursor: pointer;
 }
@@ -366,9 +421,7 @@ hr {
   position: absolute;
   top: 50%;
   cursor: pointer;
-  font-size: 24px;
-  color: white;
-  background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+   background: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
   padding: 10px;
   border-radius: 4px;
 }
@@ -412,16 +465,15 @@ hr {
 }
 
 #lightbox-reference {
-  font-weight: bold;
-  color: white;
+  font-family: 'Poppins',sans-serif;
+  font-weight: 500;
   font-size: 14px;
   margin-right: 10px; /* space between reference and category */
 }
 
 #lightbox-category {
-  font-weight: bold;
-  color: white;
   font-size: 14px;
+  letter-spacing: 0.1em;
 }
 
 .photo-info {
@@ -436,24 +488,6 @@ hr {
 .category {
   padding: 5px;
   border-radius: 5px;
-}
-
-/* Position the fullscreen icon at the top right corner of each photo-card */
-.photo-card {
-  position: relative;
-}
-
-.photo-card img.fullscreen-icon {
-  position: absolute;
-  top: 10px; /* top position  */
-  right: 10px; /* right position  */
-  cursor: pointer; /* cursor to indicate interactivity */
-  opacity: 0; /* Initially hide the icon */
-  transition: opacity 0.3s ease; /* smooth transition for opacity */
-}
-
-.photo-card:hover img.fullscreen-icon {
-  opacity: 1;
 }
 
 .container {
@@ -480,9 +514,6 @@ input
   height: 42px;
   width: 260px;                                                   
   padding: 11px 18px 11px 18px;
-  font-family: Space Mono;
-  font-size: 12px;
-  font-weight: 400;
   line-height: 18px;
   letter-spacing: 0.03em;
   transition: border-color 0.3s;
@@ -499,7 +530,6 @@ input
   margin-right: -100%;
 }
 
-/* Remove border and add styling on hover */
 .load-more-button button {
   border: none;
   background-color: #D8D8D8;
@@ -519,8 +549,7 @@ input
   border: 1.3px solid;
   height: 42px;
   padding: 11px 18px;
-  font-family: Poppins;
-  font-size: 12px;
+  font-family: 'Poppins',sans-serif;
   font-weight: 500;
   line-height: 18px;
   letter-spacing: 0.03em;
@@ -577,7 +606,7 @@ input
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
     .load-more-button {
-    margin-right: 0;
+      margin-right: 0;
   }
     .modal-content {
       padding-left: 145px;
@@ -590,13 +619,13 @@ input
   }
   .content {
     column-count: 1; /* Display photos in one column */
-    column-gap: 0; /* No gap between columns */
+    column-gap: 0; 
   }
   .wpcf7-form-control {
-  border-radius: 8px;
-  border: 1px solid;
-  height: 40px;
-  width: 190px;                                                   
+    border-radius: 8px;
+    border: 1px solid;
+    height: 40px;
+    width: 190px;                                                   
   }
   .modal-content img {
     margin-left: -191px;
@@ -625,15 +654,11 @@ input
 
 /* Media Query for smaller screens */
 @media (min-width: 382px) and (max-width: 648px) {
-  .content {
-    column-count: 1; /* Display photos in one column */
-    column-gap: 0; /* No gap between columns */
-  }
   .navbar-toggler {
     margin-left: 260px;
     margin-top: -40px;
   }
   .filter-dropdown {
-    width: 160px; /* Allow select elements to expand to the full width on smaller screens */
+    width: 160px; 
   }
 }

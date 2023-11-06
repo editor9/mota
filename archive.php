@@ -2,7 +2,7 @@
 get_header();
 ?>
 
-<article class="content px-3 py-5 p-md-5">
+<section class="content px-3 py-5 p-md-5">
 
 	<?php
 	if (have_posts()) {
@@ -26,7 +26,7 @@ get_header();
 
 	?>
 
-</article>
+</section>
 
 <?php
 get_footer();

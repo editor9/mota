@@ -6,8 +6,8 @@ get_template_part('template-parts/contact-modal');
     <span class="close-lightbox" id="close-lightbox">×</span>
     <img class="lightbox-content" id="lightbox-content" src="" alt="Photo en plein écran">
 
-    <span class="lightbox-arrow lightbox-arrow-prev" id="lightbox-arrow-prev">← Précédente</span>
-    <span class="lightbox-arrow lightbox-arrow-next" id="lightbox-arrow-next">Suivante →</span>
+    <span class="lightbox-arrow lightbox-arrow-prev" id="lightbox-arrow-prev"><i class="fa-solid fa-arrow-left"></i> Précédente</span>
+    <span class="lightbox-arrow lightbox-arrow-next" id="lightbox-arrow-next">Suivante <i class="fa-solid fa-arrow-right"></i></span>
 
     <!-- Place the #lightbox-info element here -->
     <div id="lightbox-info">

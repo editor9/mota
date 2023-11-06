@@ -28,11 +28,33 @@ jQuery(document).ready(function ($) {
 
   function appendNewPhotos(response) {
     if (response.success && response.data && response.data.content) {
-      $(".photo-gallery").append(response.data.content);
+        var newPhotos = $(response.data.content);
+        
+        // Append new photos to the gallery
+        $(".photo-gallery").append(newPhotos);
+
+        // Attach the click event handler for "fullscreen-icon" to the new photos
+        newPhotos.find(".photo-card img.fullscreen-icon").on("click", function () {
+            var photoCard = $(this).closest(".photo-card");
+            var imageUrl = photoCard.data("image-url");
+            var reference = photoCard.data("reference");
+            var category = photoCard.data("category");
+
+            // Set the source of the lightbox image
+            $("#lightbox-content").attr("src", imageUrl);
+
+            // Update the lightbox content
+            $("#lightbox-reference").text(reference);
+            $("#lightbox-category").text(category);
+
+            // Show the lightbox
+            $("#photo-lightbox").show();
+        });
     } else {
-      console.error("Response structure is not as expected:", response);
+        console.error("Response structure is not as expected:", response);
     }
-  }
+}
+
 
   // "Charger plus" button functionality
   var page = 2; // Start with the second page (since the first page is already loaded).

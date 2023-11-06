@@ -1,7 +1,7 @@
-<div class="container">
+<section class="container">
 
     <?php
     the_content();
     ?>
 
-</div>
+</section>
