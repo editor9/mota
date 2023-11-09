@@ -1,8 +1,8 @@
 <?php
 get_header();
 ?>
-
-<section class="content px-3 py-5 p-md-5">
+<div class="row">
+<article class="content ml-5 py-5 p-md-5">
 
 	<?php
 	if (have_posts()) {
@@ -26,8 +26,8 @@ get_header();
 
 	?>
 
-</section>
-
+</article>
+</div>
 <?php
 get_footer();
 ?>

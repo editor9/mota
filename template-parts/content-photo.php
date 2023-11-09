@@ -9,3 +9,4 @@
         <img src="http://localhost:81/mota/wp-content/uploads/2023/10/Icon_fullscreen.png" class="fullscreen-icon" />
     </div>
 </div>
+

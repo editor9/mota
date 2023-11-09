@@ -46,7 +46,7 @@
                         'container' => 'ul',
                         // Add the container element
                         'theme_location' => 'primary',
-                        'items_wrap' => '<ul id="%1$s" class="navbar-nav ml-auto">%3$s</ul>' // Modify the items_wrap to use ml-auto for right alignment
+                        'items_wrap' => '<ul id="%1$s" class="navbar-nav ml-auto header-links">%3$s</ul>' // Modify the items_wrap to use ml-auto for right alignment
                     )
                 );
                 ?>

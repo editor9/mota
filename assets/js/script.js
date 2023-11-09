@@ -4,7 +4,10 @@ jQuery(document).ready(function ($) {
   // Hamburger menu toggle
   $(".navbar-toggler").click(function () {
     $("#navigation").toggleClass("show");
+ //$("#overlay").toggleClass("active");
   });
+
+
 
   // Handle modal opening
   var modal = document.getElementById("myModal");
@@ -14,6 +17,28 @@ jQuery(document).ready(function ($) {
     var contact_link = contact_links[i];
     if (contact_link != null) {
       contact_link.onclick = function () {
+        var currentPhotoRef = "";
+        var currentPhotoRefElement = document.getElementById("current-photo-ref");
+        if (currentPhotoRefElement) {
+            currentPhotoRef = currentPhotoRefElement.innerHTML;
+           // console.log("innerHTML is "+currentPhotoRef);
+            if (currentPhotoRef) {
+                currentPhotoRef = currentPhotoRef.split(" : ")[1];
+                if (currentPhotoRef) {
+                    currentPhotoRef = currentPhotoRef.trim();
+                    console.log(currentPhotoRef);
+                } else {
+                    console.log("Reference not found in innerHTML");
+                }
+            } else {
+                console.log("innerHTML is empty");
+            }
+        } else {
+            console.log("Element with ID 'current-photo-ref' not found");
+        }
+        
+        var photoRef = document.getElementById("photo-ref");
+        photoRef.value = currentPhotoRef;
         modal.style.display = "block";
       };
     }
@@ -25,6 +50,9 @@ jQuery(document).ready(function ($) {
       modal.style.display = "none";
     }
   };
+
+
+
 
   function appendNewPhotos(response) {
     if (response.success && response.data && response.data.content) {
@@ -92,19 +120,14 @@ jQuery(document).ready(function ($) {
     $(this).siblings(".filter-dropdown").toggle();
   });
 
+
+
   // Function to update photos based on     selected     terms
   function updatePhotos() {
     var selectedCategories = $("#category-select").val();
     var selectedFormats = $("#format-select").val();
     var selectedSort = $("#sort-select").val();
-    console.log(
-      "cat is " +
-        selectedCategories +
-        " format is " +
-        selectedFormats +
-        " sort is " +
-        selectedSort
-    );
+    //console.log("cat is " + selectedCategories + " format is " + selectedFormats + " sort is " + selectedSort );
     // AJAX request to fetch filtered photos
     $.ajax({
       type: "POST",
@@ -119,7 +142,7 @@ jQuery(document).ready(function ($) {
       success: function (response) {
         // Assuming "response" contains the JSON response you provided
         if (response.content) {
-          console.log("Content received:", response.content);
+  //console.log("Content received:", response.content);
           // Replace the photo gallery with the updated content
           $(".photo-gallery").html(response.content);
         } else {
@@ -139,6 +162,9 @@ jQuery(document).ready(function ($) {
     updatePhotos(); // Call the updatePhotos function when the filters change
   });
 
+ 
+  
+  
   // JavaScript code for opening the single-photo.php page
   $(".photo-gallery").on("click", ".photo-card i.fas.fa-eye", function () {
     var photoCard = $(this).closest(".photo-card");
@@ -177,6 +203,8 @@ jQuery(document).ready(function ($) {
       .replace(/è|é|ê|ë/g, "e");
   }
 
+ 
+  
   if (typeof jQuery == "undefined") {
     console.log("jQuery is not loaded.");
   } else {

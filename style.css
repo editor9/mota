@@ -7,11 +7,17 @@ Tags: upper-bar, responsive
 Author: Elie Akiki
 Author URI: https://www.youtube.com/watch?v=MuTg9PY-0Do
 */
+
 body{
   font-family: 'Space Mono', monospace;
   font-size: 12px;
   font-weight: 400;
 }
+
+.header-links a {
+  color: black !important;
+}
+
 a {
   color: black !important;
 }
@@ -49,27 +55,6 @@ h2{
   margin-top: 10px;
 }
 
-ul {
-  list-style: none;
-}
-
-ul {
-  margin-top: 0;
-  margin-bottom: -0.5rem;
-}
-
-#navigation ul {
-  list-style: none;
-  padding-left: 270px;
-  display: flex; /* Use flexbox to arrange items horizontally */
-  font-size: 16px;
-  line-height: 61px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-
 .custom-logo{
   margin-top: 31px;
   margin-left: -100px;
@@ -97,11 +82,6 @@ ul {
   border-color: white;
  }
  
- /* Style the mobile menu */
- #navigation.show {
-   display: block; /* Show the mobile menu */
- }
-
  .wp-block-image img{
   width: 1440px;
 }
@@ -184,8 +164,8 @@ textarea
 }
 
 .row {
-  margin-right: 15px !important;
-  margin-left: 15px !important;
+  margin-right: 2% !important;
+  margin-left: 2% !important;
 }
 
 .col.post-nav {
@@ -254,12 +234,6 @@ ul#menu-footer a:hover {
   text-transform: uppercase;
 }
 
-
-.col.post-photo {
-  padding-bottom: 14px;
-  padding-right: 0;
-}
-
 /* black horizontal line just after the "Formats" section */
 .main-content .metas:last-child {
   border-bottom: 1px solid #000;
@@ -302,13 +276,52 @@ hr {
 }
 
 .photo-card img {
-  width: 100%;
-  height: 495px;
+  height: 50vw; /* Adjust the value as needed */
+  width: 56.25vw; /* 50vw * 1.125 (aspect ratio) */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
 
 .post-photo img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 495px;
 }
+
+.col.post-photo {
+  padding-bottom: 1.4vh; /* Adjust the value as needed */
+  padding-right: 0;
+}
+
+.post-single-photo img {
+  max-width: 100%;
+}
+.col.post-single-photo {
+  padding-bottom: 14px;
+  padding-right: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.article.content {
+  flex: 0 0 65%; /* Adjust the width of the left column */
+}
+
+.col-md-4.text-center {
+  flex: 0 0 32%; /* Adjust the width of the right column */
+}
+
+.load-more-button {
+  margin-top: 2vh; /* Adjust the value as needed */
+}
+
+#load-more {
+  width: 100%;
+  padding: 1vh 0; /* Adjust the padding as needed */
+}
+
 
 .photo-card i {
   position: absolute;
@@ -360,20 +373,13 @@ hr {
 
 /* Styles for the reference and category text */
 .photo-card:hover::after {
-  content: attr(data-reference) " " attr(data-category);
+  content: attr(data-reference) " \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0" attr(data-category);
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  left: 60px;
   color: white;
   font-size: 16px;
   opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.photo-card:hover::before,
-.photo-card:hover::after {
-  content: attr(data-reference) ' ' attr(data-category);
-  opacity: 1;
   transition: opacity 0.3s ease;
 }
 
@@ -381,7 +387,6 @@ hr {
 .photo-card:hover::before, .photo-card:hover::after {
   opacity: 1;
 }
-
 
 /* Styles for the Lightbox Container */
 .lightbox {
@@ -459,8 +464,8 @@ hr {
   bottom: 0; /* Place at the bottom of the lightbox */
   left: 0; /* Align to the left */
   right:0; /* Align to the right */
-  padding-left: 275px;
-  padding-right: 275px; /* Add padding for spacing */
+  padding-left: 15%;
+  padding-right: 15%; /* Add padding for spacing */
   background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
 }
 
@@ -503,7 +508,7 @@ hr {
 #filter-form {
   margin-top: 24px; 
   margin-bottom: 35px;
-  display: flex;
+  display: inline-flex;
 }
                                                                        
 button,
@@ -556,7 +561,7 @@ input
   text-align: left;
 }
 
-.all-photos {
+.all-photos { /*Tous les photos  button*/
   width: 272px;                                              
    height: 50px;
    border-radius: 2px;
@@ -568,6 +573,18 @@ input
    margin-left: 39%;
    margin-top: 30px;
  }
+
+ #navigation ul {
+  list-style: none;
+  padding-left: 270px;
+  display: flex; /* Use flexbox to arrange items horizontally */
+  font-size: 16px;
+  line-height: 61px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 0;
+}
 
 
 
@@ -602,6 +619,7 @@ input
     margin-left: 0px !important;
   }
 }
+
 
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
@@ -648,17 +666,62 @@ input
   line-height: 50px; /* Center the text vertically within the button */
   }
   .all-photos{
-  margin-left: 30%;
+  margin-left: 15%;
   }
 }
 
 /* Media Query for smaller screens */
-@media (min-width: 382px) and (max-width: 648px) {
+@media (min-width: 370px) and (max-width: 648px) {
   .navbar-toggler {
     margin-left: 260px;
     margin-top: -40px;
   }
-  .filter-dropdown {
-    width: 160px; 
+  #sort-select{
+    display: none;
+  }
+  .photo-card:hover::after{
+    left: 10px;
+  }
+  #filter-form {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .row{
+    overflow: hidden;
+  }
+  .custom-logo {
+    margin-left: -140px;
+  }
+  #format-select {
+    margin-left: 1% !important;
+  }
+  #navigation ul {
+    list-style: none;
+    font-family: Space Mono;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 65px;
+    position: fixed;
+    margin-top: 78px;
+    width: 100%;
+    height: 100%;
+    background: rgba(224, 0, 0, 1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    padding-left: calc(32% - 30px);
+    padding-top: 170px;
+  } 
+  
+  #navigation.show {   
+    display: block;
+  }
+  .header-links a {
+    color: white !important;
+  }
+.modal-content {
+    padding-left: 50px;
+    max-width: 290px;
   }
 }

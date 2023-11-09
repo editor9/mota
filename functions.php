@@ -27,8 +27,7 @@ function mota_enqueue_styles_and_scripts() {
 
     // Enqueue styles
     wp_enqueue_style('mota-bootstrap', "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", array(), '4.4.1', 'all');
-    wp_enqueue_style('mota-fontawesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css", array(), '6.4.2', 'all');
-    //wp_enqueue_style('mota-font', "https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap", array(), '', 'all');
+    wp_enqueue_style('mota-fontawesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css", array(), '6.4.2', 'all');//wp_enqueue_style('mota-font', "https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap", array(), '', 'all');
     wp_enqueue_style('mota-style', get_template_directory_uri() . "/style.css", array(), $version, 'all');
 
     // Register and enqueue scripts

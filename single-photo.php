@@ -27,9 +27,7 @@ get_header();
                     <h1>
                         <?php the_title(); ?>
                     </h1>
-                    <p class="metas">RÉFÉRENCE :
-                        <?php the_field('reference'); ?>
-                    </p>
+                    <p class="metas" id="current-photo-ref">RÉFÉRENCE : <?php the_field('reference'); ?></p>
                     <p class="metas">CATÉGORIE :
                         <?php
                         if ($main_cat) {
@@ -72,7 +70,7 @@ get_header();
                     ?>
                 </div>
 
-                <div class="col post-photo">
+                <div class="col post-single-photo">
                     <img src="<?php the_field('fichier_photo'); ?>" />
                 </div>
             </div>
@@ -164,10 +162,7 @@ get_header();
                         <div class="col post-photo">
                             <div class="photo-card">
                                 <img src="<?php echo $photo['image']; ?>" alt="<?php echo $photo['title']; ?>">
-                                <!--
-                    <i class="fas fa-eye fa-2x"></i>
-                    <img src="http://localhost:81/mota/wp-content/uploads/2023/10/Icon_fullscreen.png" class="fullscreen-icon">
-                    -->
+
                             </div>
                         </div>
                     <?php endforeach; ?>
