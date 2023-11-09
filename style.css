@@ -150,7 +150,7 @@ textarea
   display: flex; /* flexbox to align items horizontally */
   align-items: center; /* Vertically center the items */
   justify-content: center; /* Horizontally center the text */
-  margin-left: 17%;
+  margin-left: 16%;
 }
 
 .contact-layout a {
@@ -538,7 +538,8 @@ input
   align-items: center;
   justify-content: right;
   height: 100%; /* Ensure the container takes the full height of the column */
-  margin-right: -100%;
+  margin-right: -105%;
+  margin-left: 125%;
 }
 
 .load-more-button button {
@@ -630,7 +631,8 @@ input
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
     .load-more-button {
-      margin-right: 0;
+      margin-right: 10%;
+      margin-left: 10%;
   }
     .modal-content {
       padding-left: 145px;
@@ -691,6 +693,7 @@ input
   attr(data-category);
   left: 40px;
 }
+
 }
 
 /* Media Query for smaller screens */
@@ -746,5 +749,8 @@ input
 .modal-content {
     padding-left: 50px;
     max-width: 290px;
+  }
+  .contact-text {
+    margin-left: -20%;
   }
 }
