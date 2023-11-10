@@ -694,6 +694,23 @@ input
   left: 40px;
 }
 
+
+
+/* Default hamburger icon */
+.navbar-toggler-icon {
+  background-image: url(http://localhost:81/mota/wp-content/uploads/2023/11/Icon-Menu.png) !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+/* Styles for the "X" icon when the menu is open */
+.navbar-toggler-icon.collapsed {
+  background-image: url(http://localhost:81/mota/wp-content/uploads/2023/11/Menu.png) !important;
+}
+
 }
 
 /* Media Query for smaller screens */

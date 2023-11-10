@@ -4,7 +4,7 @@ jQuery(document).ready(function ($) {
   // Hamburger menu toggle
   $(".navbar-toggler").click(function () {
     $("#navigation").toggleClass("show");
- //$("#overlay").toggleClass("active");
+    $(".navbar-toggler-icon").toggleClass("collapsed"); // rajouter collapsed
   });
 
 

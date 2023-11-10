@@ -33,9 +33,8 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light col">
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon collapsed"></span> <!--rajouter collapsed   -->
             </button>
             <div id="navigation" class="collapse navbar-collapse">
 
